@@ -23,7 +23,7 @@ Equation_limit_test_trivariate <- function(equation_in_x_y_string,left_limit_x, 
   corner_lim_1 = full_df[which(full_df[1] == left_limit_x & full_df[2] == left_limit_y),]
   corner_lim_2 = full_df[which(full_df[1] == left_limit_x & full_df[2] == right_limit_y),]
   corner_lim_3 = full_df[which(full_df[1] == right_limit_x & full_df[2] == left_limit_y),]
-  corner_lim_4 = full_df[which(full_df[1] == right_limit_x & full_df[2] == left_limit_y),]
+  corner_lim_4 = full_df[which(full_df[1] == right_limit_x & full_df[2] == right_limit_y),]
   final_df = rbind(corner_lim_1,corner_lim_2,corner_lim_3,corner_lim_4)
   return(final_df)
 }

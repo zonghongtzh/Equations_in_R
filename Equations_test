@@ -1,0 +1,15 @@
+equation_limit_test <- function(equation_in_x_string, limits_left_bound, limits_right_bound) {
+  x_cord = seq(limits_left_bound,limits_right_bound,0.01)
+  y_cord = eval(parse(text=equation_in_x_string))
+  full_cord = data.frame(x_cord,y_cord)
+  plot(full_cord,
+       type = "l")
+  left_limit = full_cord$y_cord[1]
+  right_limit = tail(full_cord$y_cord,n=1)
+  return(paste(toString(limits_left_bound), " limit:", toString(left_limit), "|| ", toString(limits_right_bound), " :", toString(right_limit)))
+}
+
+equation_in_x_string= "x^2 + x^3 * x^13/x*(1/3)" ## Generic equation here
+limits_left_bound = -10 ##input left-bound
+limits_right_bound = 10 ##input right-bound
+equation_limit_test(equation_in_x_string, limits_left_bound, limits_right_bound)

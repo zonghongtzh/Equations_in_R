@@ -33,8 +33,8 @@ left_limit_x = -10
 right_limit_x = 10
 left_limit_y = -10
 right_limit_y = 10
-equation_in_x_y_string = "2/(x) + (x*y)"
-# try: equation_in_x_y_string = "x/(x*y)"
+equation_in_x_y_string = "2/(x) + (x*y)" ## Generic equation here, try any complex equation with 3 variariable, function of z f(z)
+
 
 Equation_limit_test_trivariate(equation_in_x_y_string,left_limit_x, right_limit_x, left_limit_y, right_limit_y)
 #output is scatter3d graph diagram and limits of x and y

@@ -1,0 +1,20 @@
+# limitation, unable to do infinity coordinates. e.g. 1/(x+y) function will throw error 
+
+Equation_limit_test_trivariate <- function(equation_in_x_y_string,left_limit_x, right_limit_x, left_limit_y, right_limit_y) {
+  library("plot3D")
+  x_seq = seq(left_limit_x,right_limit_x,0.1)
+  y_seq = seq(left_limit_y,right_limit_y,0.1)
+  x = t(replicate(length(y_seq), x_seq))
+  y = replicate(length(x_seq), y_seq)
+  z = eval(parse(text=equation_in_x_y_string))
+  x_cord = as.numeric(as.list(x[,]))
+  y_cord = as.numeric(as.list(y[,]))
+  z_cord = as.numeric(as.list(z[,]))
+  scatter3D(x_cord, y_cord, z_cord, colvar = z_cord, col = NULL, add = FALSE)
+}
+left_limit_x = -10
+right_limit_x = 10
+left_limit_y = -10
+right_limit_y = 10
+equation_in_x_y_string = "x+y+(x*y)"
+Equation_limit_test_trivariate(equation_in_x_y_string,left_limit_x, right_limit_x, left_limit_y, right_limit_y)

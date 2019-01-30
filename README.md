@@ -8,6 +8,6 @@ function's restrictions:
 
 - input mathematical function must be in the form of x, ie. f(x)
 
-- input mathematical function can only have 1 variable 
+- maximum of tri-variate function
 
 seeking suggestion to generalize

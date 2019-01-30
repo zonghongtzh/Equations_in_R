@@ -1,4 +1,4 @@
-# limitation, unable to do infinity coordinates. e.g. 1/(x+y) function will throw error 
+# Work in progress
 
 Equation_limit_test_trivariate <- function(equation_in_x_y_string,left_limit_x, right_limit_x, left_limit_y, right_limit_y) {
   library("plot3D")
@@ -9,12 +9,22 @@ Equation_limit_test_trivariate <- function(equation_in_x_y_string,left_limit_x, 
   z = eval(parse(text=equation_in_x_y_string))
   x_cord = as.numeric(as.list(x[,]))
   y_cord = as.numeric(as.list(y[,]))
-  z_cord = as.numeric(as.list(z[,]))
-  scatter3D(x_cord, y_cord, z_cord, colvar = z_cord, col = NULL, add = FALSE)
+  z_points = as.numeric(as.list(z[,]))
+  tryCatch({
+    z_cord = as.numeric(do.call(data.frame,lapply(z_points, function(x) replace(x, is.infinite(x),NA))))
+    scatter3D(x_cord, y_cord, z_cord, colvar = z_cord, col = NULL, add = FALSE)
+  }, 
+  error = function(e) {
+    z_cord = as.numeric(do.call(data.frame,lapply(z_points, function(x) replace(x, is.infinite(x),NA))))
+    scatter3D(x_cord, y_cord, z_cord, colvar = z_points, col = NULL, add = FALSE)
+  })
 }
 left_limit_x = -10
 right_limit_x = 10
 left_limit_y = -10
 right_limit_y = 10
-equation_in_x_y_string = "x+y+(x*y)"
+equation_in_x_y_string = "2+(x+y)"
+# try: equation_in_x_y_string = "x/(x*y)"
 Equation_limit_test_trivariate(equation_in_x_y_string,left_limit_x, right_limit_x, left_limit_y, right_limit_y)
+
+#output is scatter3d graph diagram

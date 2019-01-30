@@ -9,7 +9,15 @@ equation_limit_test <- function(equation_in_x_string, limits_left_bound, limits_
   return(paste(toString(limits_left_bound), " limit:", toString(left_limit), "|| ", toString(limits_right_bound), " :", toString(right_limit)))
 }
 
+# Usage:
+
 equation_in_x_string= "x^2 + x^3 * x^13/x*(1/3)" ## Generic equation here
 limits_left_bound = -10 ##input left-bound
 limits_right_bound = 10 ##input right-bound
+equation_limit_test(equation_in_x_string, limits_left_bound, limits_right_bound)
+
+# infinity-limit example
+equation_in_x_string= "(x^2 + 1)/x"
+limits_left_bound = -10
+limits_right_bound = 0
 equation_limit_test(equation_in_x_string, limits_left_bound, limits_right_bound)

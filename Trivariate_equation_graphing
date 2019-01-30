@@ -13,18 +13,28 @@ Equation_limit_test_trivariate <- function(equation_in_x_y_string,left_limit_x, 
   tryCatch({
     z_cord = as.numeric(do.call(data.frame,lapply(z_points, function(x) replace(x, is.infinite(x),NA))))
     scatter3D(x_cord, y_cord, z_cord, colvar = z_cord, col = NULL, add = FALSE)
+    full_df = data.frame(x_cord,y_cord,z_cord)
   }, 
   error = function(e) {
     z_cord = as.numeric(do.call(data.frame,lapply(z_points, function(x) replace(x, is.infinite(x),NA))))
     scatter3D(x_cord, y_cord, z_cord, colvar = z_points, col = NULL, add = FALSE)
+    full_df = data.frame(x_cord,y_cord,z_points)
   })
+  corner_lim_1 = full_df[which(full_df[1] == left_limit_x & full_df[2] == left_limit_y),]
+  corner_lim_2 = full_df[which(full_df[1] == left_limit_x & full_df[2] == right_limit_y),]
+  corner_lim_3 = full_df[which(full_df[1] == right_limit_x & full_df[2] == left_limit_y),]
+  corner_lim_4 = full_df[which(full_df[1] == right_limit_x & full_df[2] == left_limit_y),]
+  final_df = rbind(corner_lim_1,corner_lim_2,corner_lim_3,corner_lim_4)
+  return(final_df)
 }
+
+# usage
 left_limit_x = -10
 right_limit_x = 10
 left_limit_y = -10
 right_limit_y = 10
-equation_in_x_y_string = "2+(x+y)"
+equation_in_x_y_string = "2/(x) + (x*y)"
 # try: equation_in_x_y_string = "x/(x*y)"
-Equation_limit_test_trivariate(equation_in_x_y_string,left_limit_x, right_limit_x, left_limit_y, right_limit_y)
 
-#output is scatter3d graph diagram
+Equation_limit_test_trivariate(equation_in_x_y_string,left_limit_x, right_limit_x, left_limit_y, right_limit_y)
+#output is scatter3d graph diagram and limits of x and y

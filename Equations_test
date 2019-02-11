@@ -1,5 +1,6 @@
 equation_limit_test <- function(equation_in_x_string, limits_left_bound, limits_right_bound) {
   x_cord = seq(limits_left_bound,limits_right_bound,0.01)
+  x <- x_cord
   y_cord = eval(parse(text=equation_in_x_string))
   full_cord = data.frame(x_cord,y_cord)
   plot(full_cord,
